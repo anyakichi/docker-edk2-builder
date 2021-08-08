@@ -39,7 +39,7 @@ ENV \
   EDK2_TARGET_ARCH="X64" \
   EDK2_TOOL_CHAIN_TAG="GCC5"
 
-COPY buildenv/entrypoint.sh /usr/local/sbin/entrypoint
+COPY buildenv/entrypoint.sh /buildenv-entrypoint.sh
 COPY buildenv/buildenv.sh /usr/local/bin/buildenv
 
 COPY buildenv/buildenv.conf /etc/
@@ -50,5 +50,5 @@ RUN \
          -e 's/^#DOTCMDS=.*/DOTCMDS=setup/' \
     /etc/buildenv.conf
 
-ENTRYPOINT ["/usr/local/sbin/entrypoint"]
+ENTRYPOINT ["/buildenv-entrypoint.sh"]
 CMD ["/bin/bash"]
